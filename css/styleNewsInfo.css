@@ -1,0 +1,55 @@
+/* limit content to 80% of the page */
+.scroller {
+    max-width: 80%;
+    margin: auto;
+}
+
+/* HEADING */
+.heading {
+    border-top: 3px solid black;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.heading-category {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 30px;
+}
+
+.heading-title {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+/* SUB-HEADING */
+.author-info {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(194, 194, 194);
+    margin-bottom: 30px;
+    padding: 10px 0px;
+    color: black;
+}
+.author-image {
+    width: 50px;
+    height: 50px;
+}
+.author-name {
+    margin-left: 20px;
+}
+.author-name span {
+    text-decoration: underline;
+}
+
+/* NEWS-CONTENT */
+.news-content-image {
+    margin-bottom: 30px;
+}
+.news-content-image img {
+    width: 100%;
+}
+.news-content-text {
+    font-size: 20px;
+}

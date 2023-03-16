@@ -1,0 +1,84 @@
+.user-info-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px;
+}
+
+.user-info-main-image {
+    margin-bottom: 20px;
+}
+
+.user-info-main-image img {
+    width: 150px;
+    height: 150px;
+}
+
+.user-info-main-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-info-main-text h1 {
+    font-size: 65px;
+    font-weight: bold;
+}
+
+.user-info-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+}
+
+.user-info-detail-body {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    font-size: 20px;
+}
+
+.user-info-detail-body a {
+    display: flex;
+    align-items: center;
+    color: grey;
+    text-decoration: none;
+}
+.user-info-detail-body .edit{
+    font-size: 1em;
+    color: grey;
+    text-decoration: none;
+    font-weight: bold;
+    border: 0;
+    background-color: white
+}
+.user-info-detail-body p {
+    border-bottom: 0.5px solid black;
+}
+
+.user-info-detail-body span {
+    font-weight: bold;
+}
+
+.user-info-titles {
+    border-top: 0.5px solid gray;
+}
+
+.deletesave input[type=submit]{
+    float: right;
+    background-color: black;
+    color: white;
+    padding: 6px;
+    border-radius: 3px;
+}
+
+.deletesave input[type=submit]:hover{
+    padding: 8px;
+    font-weight: bold
+}
+

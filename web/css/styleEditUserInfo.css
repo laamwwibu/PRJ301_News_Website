@@ -1,0 +1,35 @@
+.container {
+    margin-top: 100px;
+    margin-left: 300px;
+    padding: 0px;
+    border: 1px solid rgb(182, 182, 182);
+    height: 700px;
+}
+
+.container .row {
+    margin-top: 100px;
+}
+
+.user-info-detail-body table {
+    border-collapse: separate;
+    border-spacing: 50px 20px;
+}
+
+.update-gender>* {
+    margin-right: 20px;
+}
+
+form input.button {
+    width: 100%;
+    color: #fff;
+    background: black;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+form input.button:hover {
+    background: grey;
+}

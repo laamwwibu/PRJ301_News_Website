@@ -1,0 +1,211 @@
+/* Install font */
+@font-face {
+    font-family: "Montserrat";
+    src: url(/font/Montserrat-VariableFont_wght.ttf);
+}
+
+/* apply font */
+body {
+    font-family: "Montserrat";
+}
+
+.nopadding {
+    padding: 0px;
+    margin: 0px;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+/* ANIMATION - UNDERLINE */
+.hover-animation-underline {
+    display: inline-block;
+    position: relative;
+    color: blue;
+}
+
+.hover-animation-underline:hover {
+    color: white;
+}
+
+.hover-animation-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-animation-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* ANIMATION - GROW */
+.hover-animation-grow {
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.hover-animation-grow:hover {
+    box-shadow: 0px 0px 20px white;
+    transform: scale(1.1);
+}
+
+.rotate {
+    animation: rotation 10s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: black;
+    padding: 20px;
+    min-height: 84px;
+}
+
+.navbar-logo {
+    text-align: center;
+}
+
+.nav-item a {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-login {
+    text-align: end;
+    padding-right: 50px;
+}
+
+.navbar-login i {
+    color: black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+/* Hotest news */
+.featured-card .featured-card-content .card-body {
+    color: white;
+}
+
+.card {
+    padding: 0px;
+    border: 0.5px solid gray;
+    border-radius: 0px;
+}
+
+.card-body {
+    margin: 0px;
+    padding: 30px;
+    height: 100%;
+    color: black;
+}
+
+.card-subtitle {
+    text-decoration: underline;
+    margin: 10px 0px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    margin: 10px 0px;
+    text-align: justify;
+}
+
+.card-text h6 {
+    text-decoration: underline;
+}
+
+.card-img,
+.card-img-top {
+    border-radius: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .card-group .card {
+        margin: 0px;
+    }
+
+    .card-group .card-img-top {
+        border-radius: 0px;
+    }
+}
+
+/* Latest title */
+.latest-title {
+    border-bottom: 0.5px solid gray;
+    padding: 15px 50px;
+}
+
+.latest-title h1 {
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0px;
+    padding: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .latest-title {
+        padding: 10px 30px;
+    }
+
+    .latest-title h1 {
+        font-size: 40px;
+    }
+}
+
+/* latest news */
+.latest-news .card {
+    border: none;
+}
+
+.latest-news-body .row {
+    border-right: 0.5px solid gray;
+    border-bottom: 0.5px solid gray;
+    padding: 30px 30px 30px 0px;
+}
+
+
+
+/* footer */
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 30px 0px;
+}
+
+.footer ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.footer li {
+    list-style: none;
+    margin: 0px 10px;
+    color: white;
+}

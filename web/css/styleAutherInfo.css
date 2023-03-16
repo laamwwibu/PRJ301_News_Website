@@ -1,0 +1,27 @@
+.author-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 80px;
+}
+
+.author-info-image {
+    margin-bottom: 20px;
+}
+
+.author-info-image img {
+    width: 150px;
+    height: 150px;
+}
+.author-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.author-info-text h1 {
+    font-size: 65px;
+    font-weight: bold;
+}
