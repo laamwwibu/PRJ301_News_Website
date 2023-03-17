@@ -118,21 +118,25 @@
                         <h4 class="sub-heading-text"><%= news.getSubtitle() %></h4>
                         <div class="author">
                             <a class="author-info" href="publicUserInfo?user_id=<%= news.getUser_id()%>">
-                                <!-- Author image here -->
+                                <!-- Author image here -->  
                                 <img class="author-image rounded-circle" src="<%= session.getAttribute("location") %><%= news.getImage() %>" alt="">
                                 <p class="author-name nopadding">By <span><%= user_nameList.get(news.getUser_id()).getUname() %></span></p>
                             </a>
                         </div>
-                        <div class="button-submit">
-                            <c:choose test="${!sessionScope.user == null}">
-                                <c:when test="${requestScope.status eq 'saved' }">
-                                    <a class="saved">Saved</a>
-                                </c:when>
-                                <c:when test="${requestScope.status eq 'unsaved' }">
-                                    <a onclick="checkSession()" href="SaveNews?news_id=${news.getNews_id()}&user_id=${sessionScope.user.getId()}">Save This New</a>
-                                </c:when>
-                            </c:choose>
-                        </div>
+
+                        <c:if test="${sessionScope.user != null}">
+                            <div class="button-submit">
+                                <c:choose>
+                                    <c:when test="${requestScope.status eq 'saved' }">
+                                        <a class="saved">Saved</a>
+                                    </c:when>
+                                    <c:when test="${requestScope.status eq 'unsaved' }">
+                                        <a onclick="checkSession()" href="SaveNews?news_id=${news.getNews_id()}&user_id=${sessionScope.user.getId()}">Save This New</a>
+                                    </c:when>
+                                </c:choose>
+                            </div>
+                        </c:if>
+
                         <c:if test="${( sessionScope.user.isIsAdmin() )}" >
                             <form id="delete-news" onsubmit="return confirm('Are you sure you want to delete this news?')" action="DeleteNews" method="post">
                                 <input type="hidden" name="news_id" value="<%= news.getNews_id() %>">
@@ -178,7 +182,7 @@
                     <table>
                         <div class="container">
                             <div class="row comment-box-text">
-                                <textarea value="${value}" class="news-content-text" type="text" name="comment_content" placeholder="Type a comment..." rows="4" onclick="checkSession()"></textarea>
+                                <textarea value="${value}" class="news-content-text" type="text" name="comment_content" placeholder="Type a comment..." rows="4" onclick="checkSession()" required=""></textarea>
                             </div>
                             <div id="function-button-post" class="row function-button">
                                 <input id="button-submit-save" class="button-submit" type="submit" value="Post Comment">
@@ -191,18 +195,23 @@
         <div class="comment">
             <c:set var="user_nameList" value="${requestScope.user_list}"/>
             <c:forEach var = "commentList" varStatus="loop" items="${requestScope.commentList}">
-                <div class="comment-content-text">
-                    <p><a href="publicUserInfo?user_id=${commentList.getUser_id()}">
-                            <i class="material-icons hover-animation-grow">person</i><b>${user_nameList[commentList.getUser_id()].getUname()}</b></a>
-                    </p> 
-                    <p><c:out value="${commentList.getCommment_content()}"/>
+                <div class="comment-list">
+                    <div class="comment-list-user">
+                        <a style="display: inline-block" href="publicUserInfo?user_id=${commentList.getUser_id()}">
+                            <i class="material-icons rounded-circle nopadding">person</i>
+                            <p class="nopadding" style="display: inline-block">${user_nameList[commentList.getUser_id()].getUname()}</p>
+                        </a>
+                    </div>
+                    <div class="comment-list-body">
+                        <p><c:out value="${commentList.getCommment_content()}"/></p>
                         <c:if test="${sessionScope.user != null}">
-                            <c:if test="${commentList.getUser_id() == sessionScope.user.getId()}"> <!<!-- chi chinh sua dc comment cua minh -->
-                                <a href="GetNews?news_id=${news.getNews_id()}&action=edit&com_id=${commentList.getComment_id()}&content=${commentList.getCommment_content()}&#com" class = "edit">Edit</a>
-                                <a onclick="return confirm('Are you sure you want to delete this comment?')" href="deleteComment?news_id=${news.getNews_id()}&comment_id=${commentList.getComment_id()}" class="edit">Delete</a>
+                            <c:if test="${commentList.getUser_id() == sessionScope.user.getId()}">
+                                <!-- chi chinh sua dc comment cua minh -->
+                                <a href="GetNews?news_id=${news.getNews_id()}&action=edit&com_id=${commentList.getComment_id()}&content=${commentList.getCommment_content()}&#com" class = "button-submit">Edit</a>
+                                <a onclick="return confirm('Are you sure you want to delete this comment?')" href="deleteComment?news_id=${news.getNews_id()}&comment_id=${commentList.getComment_id()}" class="button-submit">Delete</a>
                             </c:if>
                         </c:if>
-                    </p>
+                    </div>
                 </div>
             </c:forEach>
         </div>

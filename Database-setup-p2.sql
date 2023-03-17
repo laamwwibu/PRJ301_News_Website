@@ -109,7 +109,7 @@ BEGIN
 		News_subtitle = @News_subtitle,
 		News_content = @News_content,
 		News_image = @News_image
-	WHERE News_id = @News_id,
+	WHERE News_id = @News_id
 END
 
 --INSERTING COMMENTS

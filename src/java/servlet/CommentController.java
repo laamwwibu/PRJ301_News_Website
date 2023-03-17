@@ -91,9 +91,9 @@ public class CommentController extends HttpServlet {
             String comment_content = request.getParameter("comment_content");
 
             Comments comment = new Comments(user_id, news_id, comment_content);
-            if(commentDAO.insertComments(comment)) System.out.println("cant insert comment");;
+            if(commentDAO.insertComments(comment)) System.out.println("cant insert comment");
             
-            response.sendRedirect("GetNews?news_id="+news_id);
+            response.sendRedirect("GetNews?news_id="+news_id+"#com");
         } catch (Exception e) {
             System.out.println("ERROR INSERTING COMMENT");
         }

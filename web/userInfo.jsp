@@ -111,8 +111,7 @@
                         </c:if>
                         <c:if test="${(!sessionScope.user.getGender() eq 'Female') and (!sessionScope.user.getGender() eq 'Male')}">
                             <img class="rounded-circle" src="image/user/female.webp" alt="">
-                        </c:if>
-                            
+                        </c:if>     
                     </div>
                     <div class="user-info-main-text">
                         <h1><c:out value="${sessionScope.user.getUname()}"/></h1>

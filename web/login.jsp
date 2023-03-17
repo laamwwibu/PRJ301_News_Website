@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="registration form">
-                    <header>Signup</header>
+                    <headerSignup</header>
                     <form action="UserSignup" method="post">
                         <input type="text" name="username" placeholder="Username">
                         <input type="text" name="name" placeholder="Real name">

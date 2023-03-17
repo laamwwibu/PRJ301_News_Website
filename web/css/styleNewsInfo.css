@@ -124,14 +124,33 @@
     color: black;
 }
 
-.comment-content-text a{
+.comment-list {
+    padding: 10px;
+}
+.comment-list-user a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    color: black
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
 }
-.comment-content-text .edit{
-    float: right;
+.comment-list-user a i {
+    margin: 5px;
+    padding: 5px;
+    background-color: black;
+    color: white;
 }
-.comment-content-text a:hover{
-    text-decoration: underline;
-    font-weight: bold
+.comment-list-body p {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    border: 1px solid black;
+    padding: 10px;
+}
+.comment-list-body .button-submit {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }

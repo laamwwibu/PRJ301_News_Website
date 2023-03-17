@@ -101,7 +101,7 @@
                             HashMap<Integer,User> user_nameList = (HashMap<Integer,User>) request.getAttribute("user_list");
                         %>
                         <div class="col-md-8 featured-card-image nopadding">
-                            <img style="height: 300px; object-fit: cover" class="card-img img-fluid" src="<%= session.getAttribute("location") %><%= news_list.get(0).getImage() %>" alt="...">
+                            <img style="width: 100%; object-fit: cover" class="card-img img-fluid" src="<%= session.getAttribute("location") %><%= news_list.get(0).getImage() %>" alt="...">
                         </div>
                         <div class="col-md-4 featured-card-content align-self-center nopadding">
                             <div class="card-body">
@@ -116,7 +116,7 @@
                 </div>
                 <div class="row card-group nopadding">
                     <%
-                        for (int idx = 1 ; idx < 5; idx++) { //display 4 top
+                        for (int idx = 1 ; idx < 4; idx++) { //display 4 top
                     %>
                     <div class="card">
                         <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" ><img style="height: 300px; object-fit: cover" src="<%= session.getAttribute("location") %><%= news_list.get(idx).getImage() %>" class="card-img-top img-fluid" alt="..."> </a>
