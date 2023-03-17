@@ -82,3 +82,11 @@
     font-weight: bold
 }
 
+.paging-next h4, .paging-prev h4 {
+    text-decoration: none;
+    color: gray;
+}
+.paging-prev a, .paging-next a {
+    text-decoration: none;
+    color: black;
+}

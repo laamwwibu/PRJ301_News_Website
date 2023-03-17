@@ -43,7 +43,7 @@
                                 </tr>
                                 <tr>
                                     <td>Username:</td>
-                                    <td><input type="text" name="username" value="${user.getUname()}" ><br></td>
+                                    <td><input type="text" name="username" value="${user.getUname()}" readonly><br></td>
                                 </tr>
                                 <tr>
                                     <td>Real Name:</td>

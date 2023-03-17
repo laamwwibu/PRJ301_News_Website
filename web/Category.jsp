@@ -52,8 +52,8 @@
                 </div>
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
-                    <form action="">
-                        <input style="width: 100%;" type="text" placeholder="Search anything">
+                    <form action="Search">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -91,7 +91,6 @@
                 </div>
             </div>
         </nav>
-
         <!-- spacer for fixed navbar -->
         <div style="height: 84px;" class="spacer"></div>
 
@@ -120,7 +119,7 @@
                     <div class="col-md-8 latest-news-body nopadding">
                         <div class="row nopadding">
                             <div class="col-md-6 card-image nopadding">
-                                <a style="height: 300px; object-fit: cover" href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" > <img src="<%= session.getAttribute("location") %><%= news_list.get(idx).getImage() %>" class="card-img-top" alt="..."></a>
+                                <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>"><img style="height: 300px; object-fit: cover" src="<%= session.getAttribute("location") %><%= news_list.get(idx).getImage() %>" class="card-img-top" alt="..."></a>
                             </div>
                             <div class="col-md-6 card-content align-self-center nopadding">
                                 <div class="card-body">

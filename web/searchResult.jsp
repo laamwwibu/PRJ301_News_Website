@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="css/styleGlobal.css">
         <!-- Embed category CSS -->
         <link rel="stylesheet" href="css/styleCategory.css">
+        <link rel="stylesheet" href="css/styleNewsInfo.css"/>
+        <link rel="stylesheet" href="css/styleSearchResult.css"/>
     </head>
 
     <body>
@@ -26,7 +28,7 @@
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
                 <!-- NAVBAR -->
-                <div class="navbar-logo col-md-3">
+                <div class="navbar-logo col-md-1">
                     <a class="navbar-brand" href="MainPage">
                         <img style="width: 100px;" src="image/branding/vice logo.png" alt="">
                     </a>
@@ -40,20 +42,54 @@
                 <div class="collapse navbar-collapse col-md-6" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <%
-                            HashMap<Integer, Category> cat_name = (HashMap<Integer, Category>) session.getAttribute("cat_list");
+                            HashMap<Integer,Category> cat_name = (HashMap<Integer,Category>) session.getAttribute("cat_list");
+                            for (int key : cat_name.keySet()) {
                         %>
-                        <c:forEach items="<%= cat_name%>" var = "cat_name" >
-                            <div class="nav-item">
-                                <a class="nav-link hover-animation-underline" href="Search?cat_id=<c:out value="${cat_name.key}"/>"  ><c:out value="${cat_name.value.getName()}"/></a>
-                            </div>
-                        </c:forEach>
+                        <div class="nav-item">
+                            <a class="nav-link hover-animation-underline" href="Search?cat_id=<%= cat_name.get(key).getId() %>">
+                                <%= cat_name.get(key).getName()%></a>
+                        </div>
+                        <%}%>
                     </ul>
                 </div>
-                <!-- NAVBAR LOGIN -->
-                <div class="navbar-login col-md-3">
-                    <a href="" id="navbar-icon-user">
-                        <i class="material-icons hover-animation-grow">person</i>
-                    </a>
+                <!-- NAVBAR SEARCH -->
+                <div class="col-md-3 navbar-search">
+                    <form action="Search">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
+                        <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
+                            <i class="material-icons hover-animation-grow">search</i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- NAVBAR PROFILE -->
+                <div class="col-md-2 navbar-login navbar-collapse" id="navbarNavDropdown">
+                    <% String user = "user";
+                         int ID = 0;
+                         if (session.getAttribute("user") != null) {  
+                        User user1 = (User)session.getAttribute("user");
+                        user = user1.getName();
+                        ID = user1.getId();
+                        }%>
+                    <p class="nopadding">Hello, <%= user %></p>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" id="navbar-icon-user"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="material-icons hover-animation-grow">person</i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
+                                <% if (session.getAttribute("user") == null) {  %>
+                                <li><a class="dropdown-item" href="login.jsp">Login</a></li>
+                                <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
+                                    <%} else{ %>
+                                <li><a class="dropdown-item" href="UserLogout">Log out</a></li>
+                                <li><a class="dropdown-item" href="Profile?id=<%= ID %>">Profile</a></li>
+                                    <%}%>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -64,32 +100,35 @@
             ArrayList<News> news_list = (ArrayList<News>) request.getAttribute("news_list");
             String title = (String) request.getAttribute("title");
         %>
+
         <!-- HEADING -->
-        <div class="text-center">
-            <h1>Search result for :</h1>
-        </div>
-        <div class="text-center" style="font-weight: normal">
-            <h2><%= title%></h2>
+        <div class="latest-title nopadding">
+            <h1>Search result for</h1>
+            <h1>"<%= title%>"</h1>
         </div>
 
-        <form action="Search" method="get">
-            <input type="hidden" name="title" value="<%=title%>">
-            <select name="cat_id">           
-                <c:forEach items="<%= cat_name%>" var = "cat_name" >
-                    <option value="<c:out value="${cat_name.key}"/>" > <c:out value="${cat_name.value.getName()}"/> </option>
-                </c:forEach>
-            </select>
-            <input type='submit' name='action' value='Filter'>
-        </form>
-        <%
-            for (News news : news_list) {
-        %>
+        <div class="filter-box">
+            <form action="Search" method="get">
+                <input type="hidden" name="title" value="<%=title%>">
+                <select name="cat_id">  
+                    <option  value="" disabled selected >Select Category</option>
+                    <c:forEach items="<%= cat_name%>" var = "cat_name" >
+                        <option value="<c:out value="${cat_name.key}"/>" > <c:out value="${cat_name.value.getName()}"/> </option>
+                    </c:forEach>
+                </select>
+                <input style="color: white; font-weight: bold" class="button-submit filter-box-button" type='submit' name='action' value='Filter'>
+            </form>
+        </div>
         <!-- MAIN-CONTENT -->
+        <!-- them if neu ko co bai nao -->
         <div class="container-fluid">
             <!-- 4 rows of news -->
             <div class="row nopadding">
+                <%
+                for (News news : news_list) {
+                %>
                 <div class="card col-md-4 nopadding">
-                    <a href="GetNews?news_id=<%= news.getNews_id()%>" ><img src="<%= session.getAttribute("location")%><%= news.getImage()%>.webp" class="card-img-top" alt="..."></a>
+                    <a href="GetNews?news_id=<%= news.getNews_id()%>" ><img style="height: 300px; object-fit: cover" src="<%= session.getAttribute("location")%><%= news.getImage()%>" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                         <h3 class="card-title"><%= news.getTitle()%></h3>
                         <p class="card-text"><%= news.getSubtitle()%></p>

@@ -56,8 +56,8 @@
                 </div>
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
-                    <form action="">
-                        <input style="width: 100%;" type="text" placeholder="Search anything">
+                    <form action="Search">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -184,7 +184,7 @@
         <!-- PAGING NAVIGATOR -->
         <div class="paging-nav">
             <div class="paging-prev">
-                <c:if test="${page == 1}">`
+                <c:if test="${page == 1}">
                     <h4>Newer</h4>
                 </c:if>
                 <c:if test="${page >= 2}">
@@ -243,7 +243,7 @@
         <!-- PAGING NAVIGATOR -->
         <div class="paging-nav">
             <div class="paging-prev">
-                <c:if test="${page_posted == 1}">`
+                <c:if test="${page_posted == 1}">
                     <h4>Newer</h4>
                 </c:if>
                 <c:if test="${page_posted >= 2}">

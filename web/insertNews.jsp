@@ -19,6 +19,16 @@
         <link rel="stylesheet" href="css/styleGlobal.css">
         <!-- Embed category CSS -->
         <link rel="stylesheet" href="css/styleCategory.css">
+        <!--Embed insertNews CSS-->
+        <link rel="stylesheet" href="css/styleInsertNews.css"/>
+        <link rel="stylesheet" href="css/styleNewsInfo.css"/>
+
+        <style>
+            label {
+                font-weight: bold;
+                font-size: 30px;
+            }
+        </style>
     </head>
 
     <body>
@@ -57,8 +67,8 @@
                 </div>
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
-                    <form action="">
-                        <input style="width: 100%;" type="text" placeholder="Search anything">
+                    <form action="Search">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -102,62 +112,43 @@
 
         <!-- HEADING -->
 
-        <div class="text-center" style="font-weight: normal">
-            <h2>Insert new news form: </h2>
+        <div class="text-center heading" style="font-weight: normal">
+            <h1>Writing News</h1>
         </div>
 
 
 
         <!-- MAIN-CONTENT -->
-        <form action='InsertNews' method='post' enctype="multipart/form-data" >
-            <input type="hidden" name="user_id" value="${sessionScope.user.getId()}">
-            <table>
-                <tr>
-                    <td>
-                        <select name="cat_id" required>           
-                            <c:forEach items="<%= cat_name%>" var = "cat_name" >
-                                <option value="<c:out value="${cat_name.key}"/>" > <c:out value="${cat_name.value.getName()}"/> </option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Title:</td>
-                    <td><input type='text' name='title' required></td>
-                </tr>
-                <tr>
-                    <td>Subtitle:</td>
-                    <td><input type='text' name='subtitle' required></td>
-                </tr>
-                <tr>
-                    <td>Content:</td>
-                    <td><input type='text' name='content' required></td>
-                </tr>
-                <tr>
-                    <td>Image:</td>
-                    <td><input type="file" name="image" accept="image/*" required></td>
-                </tr>
-
-                <tr>
-                    <td> <input type='submit' name='action' value='Submit'></td>
-                </tr>
-            </table>
-        </form>
-
-        <!-- PAGING NAVIGATOR -->
-        <div class="paging-nav">
-            <div class="paging-prev">
-                <h4>Newer</h4>
-            </div>
-            <div class="paging-progress">
-                <h4>1</h4>
-                <h4>5</h4>
-            </div>
-            <div class="paging-next">
-                <h4>Older</h4>
-            </div>
+        <div class="container">
+            <form action='InsertNews' method='post' enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="${sessionScope.user.getId()}">
+                <label for="category">Category</label>
+                <select style="width: 30%" name="cat_id" id="category" class="form-select" required>
+                    <option  value="" disabled selected >Select Category</option>
+                    <c:forEach items="<%= cat_name%>" var = "cat_name" >
+                        <option value="<c:out value="${cat_name.key}"/>" > <c:out value="${cat_name.value.getName()}"/> </option>
+                    </c:forEach>
+                </select>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="subtitle">Subtitle</label>
+                    <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Subtitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea type="text" class="form-control" name="content" id="content" placeholder="Content" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" accept="image/*" class="form-control" name="image" id="subtitle" placeholder="Image" required>
+                </div>
+                <input style="color: white; font-weight: bold; margin-top: 10px" class="button-submit" type='submit' name='action' value='Submit'>
+            </form>    
         </div>
-        
+
         <!-- Bootstrap script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

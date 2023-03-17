@@ -52,8 +52,8 @@
                 </div>
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
-                    <form action="">
-                        <input style="width: 100%;" type="text" placeholder="Search anything">
+                    <form action="Search">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -182,7 +182,7 @@
                     <table>
                         <div class="container">
                             <div class="row comment-box-text">
-                                <textarea value="${value}" class="news-content-text" type="text" name="comment_content" placeholder="Type a comment..." rows="4" onclick="checkSession()" required=""></textarea>
+                                <textarea class="news-content-text" type="text" name="comment_content" placeholder="Type a comment..." rows="4" onclick="checkSession()" required="">${value}</textarea>
                             </div>
                             <div id="function-button-post" class="row function-button">
                                 <input id="button-submit-save" class="button-submit" type="submit" value="Post Comment">
