@@ -1,0 +1,10 @@
+.filter-box form {
+    overflow: hidden;
+    margin: 20px 0px 20px 50px;   
+}
+.filter-box select {
+    height: 46px;
+}
+.filter-box > * {
+    margin-right: 10px;
+}
