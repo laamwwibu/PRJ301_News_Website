@@ -126,6 +126,7 @@
                         </a>
                         <c:if test="${ sessionScope.user.isIsAdmin()}" >
                             <a href="insertNews.jsp">
+                                <i style="color: black;" class="material-icons">edit</i>
                                 <span>Insert News</span>
                             </a>
                         </c:if>
