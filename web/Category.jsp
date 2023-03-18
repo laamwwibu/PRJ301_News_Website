@@ -111,6 +111,9 @@
         <div style="border-bottom: 0.5px solid gray;" class="nopadding"></div>    
         <!-- MAIN CONTENT -->    
         <div class="latest-news">
+            <% if(news_list.size() == 0 ) {%>
+            <h1>No News For This Category, Yet...</h1>
+            <%} else {%>
             <div class="container-fluid">
                 <%
                     for (int idx = 0 ; idx < news_list.size() ; idx++ ) {
@@ -135,6 +138,7 @@
                 </div>
                 <%}%>
             </div>
+            <%}%>
         </div>
 
         <!-- Bootstrap script -->
