@@ -69,7 +69,7 @@
                          int ID = 0;
                          if (session.getAttribute("user") != null) {  
                         User user1 = (User)session.getAttribute("user");
-                        user = user1.getName();
+                        user = user1.getUname();
                         ID = user1.getId();
                         }%>
                     <p class="nopadding">Hello, <%= user %></p>
@@ -131,49 +131,71 @@
                         <h1>${requestScope.user.getUname()}'s</h1>
                         <h1>NEWS</h1>
                     </div>
-                    <c:forEach var="posted" items="${requestScope.posted_news}" >
-                        <div class="card col-md-4 nopadding">
-                            <img src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-subtitle"><c:out value="${ cat_name.get(posted.getCat_id()).getName()}" />
-                                    <h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3>
-                                    <p class="card-text"><c:out value="${posted.getSubtitle()}"/></p>
+                    <c:set var ="page_posted" value="1"/>
+
+                    <c:if test="${param.page_posted != null}">
+                        <c:set var="page_posted" value="${param.page_posted}"/>
+                    </c:if>
+                    <c:if test="${requestScope.posted_news.size()>0}">
+                        <c:set var="index" value="${3*page_posted-1}"/>
+                        <c:set var="user_list" value="${requestScope.user_list}"/>
+                        <c:set var="end" value="${index}"/>
+                        <c:if test="${end > requestScope.posted_news.size()-1}">
+                            <c:set var="end" value="${requestScope.posted_news.size()-1}"/>
+                        </c:if>
+                        <c:forEach begin="${index-2}" end="${end}" var="posted" items="${requestScope.posted_news}" >
+                            <div class="card col-md-4 nopadding">
+                                <img src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-subtitle"><c:out value="${ cat_name.get(posted.getCat_id()).getName()}" />
+                                        <h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3>
+                                        <p class="card-text"><c:out value="${posted.getSubtitle()}"/></p>
+                                </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </c:if>
+                    </div>
                 </div>
+                <!-- PAGING NAVIGATOR -->
+                <div class="paging-nav">
+                    <div class="paging-prev">
+                        <c:if test="${page_posted == 1}">
+                            <h4>Newer</h4>
+                        </c:if>
+                        <c:if test="${page_posted >= 2}">
+                            <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted-1}">Newer</a></h4>
+                        </c:if>
+                    </div>
+                    <div class="paging-progress">
+                        <h4>${page_posted}</h4>
+                    </div>
+                    <div class="paging-next">
+                        <c:if test="${end < requestScope.posted_news.size()-1}">
+                            <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted+1}">Older</a></h4>
+                        </c:if>
+                        <c:if test="${end >= requestScope.posted_news.size()-1}">
+                            <h4>Older</h4>
+                        </c:if>
+                    </div>
+                </div>
+            </c:if>
+            <!-- FOOTER -->
+            <div class="footer">
+                <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
+                <ul>
+                    <li>Tr?n Th? Hùng</li>
+                    <li>Lý Th? L??ng</li>
+                    <li>Phùng Phúc Lâm</li>
+                    <li>Nguy?n Hoàng Hi?p</li>
+                    <li>Nguy?n Chí Trung</li>
+                </ul>
+                <p>@ 2023 PRj301 HE1725</p>
             </div>
-            <!-- PAGING NAVIGATOR -->
-            <div class="paging-nav">
-                <div class="paging-prev">
-                    <h4>Newer</h4>
-                </div>
-                <div class="paging-progress">
-                    <h4>1</h4>
-                    <h4>5</h4>
-                </div>
-                <div class="paging-next">
-                    <h4>Older</h4>
-                </div>
-            </div>
-        </c:if>
-        <!-- FOOTER -->
-        <div class="footer">
-            <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
-            <ul>
-                <li>Tr?n Th? Hùng</li>
-                <li>Lý Th? L??ng</li>
-                <li>Phùng Phúc Lâm</li>
-                <li>Nguy?n Hoàng Hi?p</li>
-                <li>Nguy?n Chí Trung</li>
-            </ul>
-            <p>@ 2023 PRj301 HE1725</p>
-        </div>
 
-        <!-- Bootstrap script -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    </body>
+            <!-- Bootstrap script -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+        </body>
 
-</html>
+    </html>

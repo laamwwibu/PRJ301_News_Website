@@ -219,12 +219,12 @@
                     <c:if test="${param.page_posted != null}">
                         <c:set var="page_posted" value="${param.page_posted}"/>
                     </c:if>
-                    <c:if test="${requestScope.posted.size()>0}">
+                    <c:if test="${requestScope.posted_news.size()>0}">
                         <c:set var="index" value="${3*page_posted-1}"/>
                         <c:set var="user_list" value="${requestScope.user_list}"/>
                         <c:set var="end" value="${index}"/>
-                        <c:if test="${end > requestScope.saved_news.size()-1}">
-                            <c:set var="end" value="${requestScope.saved_news.size()-1}"/>
+                        <c:if test="${end > requestScope.posted_news.size()-1}">
+                            <c:set var="end" value="${requestScope.posted_news.size()-1}"/>
                         </c:if>
                         <c:forEach begin="${index-2}" end="${end}" var="posted" items="${requestScope.posted_news}" >
                             <div class="card col-md-4 nopadding">
@@ -255,10 +255,10 @@
                 <h4>${page_posted}</h4>
             </div>
             <div class="paging-next">
-                <c:if test="${end < requestScope.posted.size()-1}">
+                <c:if test="${end < requestScope.posted_news.size()-1}">
                     <h4><a href="Profile?id=<%= user1.getId() %>&page_posted=${page_posted+1}">Older</a></h4>
                 </c:if>
-                <c:if test="${end >= requestScope.posted.size()-1}">
+                <c:if test="${end >= requestScope.posted_news.size()-1}">
                     <h4>Older</h4>
                 </c:if>
             </div>

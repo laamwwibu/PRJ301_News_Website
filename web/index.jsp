@@ -62,7 +62,7 @@
                          int ID = 0;
                          if (session.getAttribute("user") != null) {  
                         User user1 = (User)session.getAttribute("user");
-                        user = user1.getName();
+                        user = user1.getUname();
                         ID = user1.getId();
                         }%>
                     <p class="nopadding">Hello, <%= user %></p>
@@ -107,7 +107,7 @@
                                 <h5 class="card-subtitle"><%= cat_name.get(news_list.get(0).getCat_id()).getName() %></h5><!-- first news -->
                                 <h3 class="card-title"><%= news_list.get(0).getTitle()%></h3>
                                 <p class="card-text"><%= news_list.get(0).getSubtitle()%></p>
-                                <h6 class="card-text"><%= user_nameList.get(news_list.get(0).getUser_id()).getName() %></h6>
+                                <h6 class="card-text"><%= user_nameList.get(news_list.get(0).getUser_id()).getUname() %></h6>
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                             <a href="Search?cat_id=<%= news_list.get(idx).getCat_id() %>"><h5 class="card-subtitle"><%= cat_name.get(news_list.get(idx).getCat_id()).getName() %></h5></a>
                             <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" > <h3 class="card-title"><%= news_list.get(idx).getTitle()%></h3> </a>
                             <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" ><p class="card-text"><%= news_list.get(idx).getSubtitle()%></p> </a>
-                            <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getName() %></h6>
+                            <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getUname() %></h6>
                         </div>
                     </div>
                     <%}%>
@@ -154,7 +154,7 @@
                                     <a href="Search?cat_id=<%= news_list.get(idx).getCat_id() %>"><h5 class="card-subtitle"><%= cat_name.get(news_list.get(idx).getCat_id()).getName() %></h5></a>
                                     <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" > <h3 class="card-title"><%= news_list.get(idx).getTitle()%></h3> </a>
                                     <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" ><p class="card-text"><%= news_list.get(idx).getSubtitle()%></p> </a>
-                                    <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getName() %></h6>
+                                    <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getUname() %></h6>
                                 </div>
                             </div>
                         </div>

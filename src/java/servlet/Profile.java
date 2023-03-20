@@ -65,11 +65,15 @@ public class Profile extends HttpServlet {
         NewsDAO newsdao = new NewsDAO();
         userDAO user = new userDAO();
         SaveDAO save = new SaveDAO();
-        ArrayList<News> list = new ArrayList<>();
+        User admin = (User) request.getSession().getAttribute("user");
+        ArrayList<News> list = user.GetAllAdminNews(admin.getId());
+        System.out.println("size:"+list.size());
+        if(list.size() == 0){
+            System.out.println("list empty");
+        }
         int id = Integer.parseInt(request.getParameter("id"));
         ArrayList<News> saved = save.getSaveNews(id);
         HashMap<Integer, User> user_list = user.getAllUser();
-        list = user.GetAllAdminNews(user.getUser(id));//get posted news
         request.setAttribute("user_list", user_list);
         request.setAttribute("saved_news", saved);
         request.setAttribute("posted_news", list);

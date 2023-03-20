@@ -73,7 +73,7 @@ public class publicUserInfo extends HttpServlet {
                     
             User user = userDAO.getUser(user_id);
             if (user.isIsAdmin()){
-                ArrayList<News> list = userDAO.GetAllAdminNews(user);
+                ArrayList<News> list = userDAO.GetAllAdminNews(user.getId());
                 request.setAttribute("posted_news", list);
             }
             request.getSession().setAttribute("cat_list", cat_list);

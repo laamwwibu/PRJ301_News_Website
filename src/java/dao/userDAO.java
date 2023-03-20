@@ -201,18 +201,18 @@ public class userDAO {
         return false;
     }
 
-    public ArrayList<News> GetAllAdminNews(User admin) {
+    public ArrayList<News> GetAllAdminNews(int admin) {
         ArrayList<News> list = new ArrayList<>();
         try {
             DBContext db = new DBContext();
             Connection con = db.getConnection();
             if (con != null) {
                 String sql = "SELECT * FROM News n "
-                        + "WHERE User_id =" + admin.getId();
+                        + "WHERE User_id =" + admin;
                 Statement call = con.createStatement();
                 ResultSet rs = call.executeQuery(sql);
                 while (rs.next()) {             //needed even if just 1 row       
-                    News news = new News(rs.getInt("News_id"), admin.getId(), rs.getInt("Cat_id"), rs.getString("News_title"), rs.getString("News_subtitle"), rs.getString("News_content"), rs.getString("News_image"));
+                    News news = new News(rs.getInt("News_id"), admin, rs.getInt("Cat_id"), rs.getString("News_title"), rs.getString("News_subtitle"), rs.getString("News_content"), rs.getString("News_image"));
                     list.add(news);
                 }
                 call.close();
@@ -222,6 +222,13 @@ public class userDAO {
             System.out.println(e);
         }
         return list;
+    }
+    public static void main(String[] args) {
+        userDAO dao = new userDAO();
+        ArrayList<News> list = dao.GetAllAdminNews(3);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getImage());
+        }
     }
 }
 //    public static void main(String[] args) {
