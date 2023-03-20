@@ -77,7 +77,6 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -119,7 +118,17 @@
                         <div class="author">
                             <a class="author-info" href="publicUserInfo?user_id=<%= news.getUser_id()%>">
                                 <!-- Author image here -->  
-                                <img class="author-image rounded-circle" src="<%= session.getAttribute("location") %><%= news.getImage() %>" alt="">
+                                <c:choose>
+                                    <c:when test="${requestScope.user_list.get(news.getUser_id()).getGender() eq 'Male' }">
+                                        <img class="author-image rounded-circle" src="image/user/male.webp" alt="">
+                                    </c:when>
+                                    <c:when test="${requestScope.user_list.get(news.getUser_id()).getGender() eq 'Female'}">
+                                        <img class="author-image rounded-circle" src="image/user/female.webp" alt="">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img class="author-image rounded-circle" src="image/user/female.webp" alt="">
+                                    </c:otherwise>     
+                                </c:choose>
                                 <p class="author-name nopadding">By <span><%= user_nameList.get(news.getUser_id()).getUname() %></span></p>
                             </a>
                         </div>

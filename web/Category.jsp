@@ -77,7 +77,7 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
+                                <!-- c?i n?y th?ng n?o l?m jsp th? ph?n lo?i theo ki?u ng??i d?ng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -99,6 +99,9 @@
             HashMap<Integer,User> user_nameList = (HashMap<Integer,User>) request.getAttribute("user_list");
         %>
         <!-- HEADING -->
+        <% if( news_list.size() == 0  ) {%>
+        <h1>No News For This Category, Yet...</h1>
+        <%} else {%>
         <div class="heading">
             <div class="text-center">
                 <h1><%= cat_name.get(news_list.get(0).getCat_id()).getName() %></h1>
@@ -111,9 +114,7 @@
         <div style="border-bottom: 0.5px solid gray;" class="nopadding"></div>    
         <!-- MAIN CONTENT -->    
         <div class="latest-news">
-            <% if(news_list.size() == 0 ) {%>
-            <h1>No News For This Category, Yet...</h1>
-            <%} else {%>
+
             <div class="container-fluid">
                 <%
                     for (int idx = 0 ; idx < news_list.size() ; idx++ ) {
@@ -150,11 +151,11 @@
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tr?n Th? H?ng</li>
-                <li>L? Th? L??ng</li>
-                <li>Ph?ng Ph?c L?m</li>
-                <li>Nguy?n Ho?ng Hi?p</li>
-                <li>Nguy?n Ch? Trung</li>
+                <li>Tr?n Th? Hùng</li>
+                <li>Lý Th? L??ng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguy?n Hoàng Hi?p</li>
+                <li>Nguy?n Chí Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
         </div>

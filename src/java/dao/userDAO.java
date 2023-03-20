@@ -41,7 +41,9 @@ public class userDAO {
                 call.setString(7, strDate);
                 call.registerOutParameter(1, java.sql.Types.INTEGER);
                 call.executeUpdate();
-                if(call.getInt(1)==0) throw new Exception();
+                if (call.getInt(1) == 0) {
+                    throw new Exception();
+                }
                 call.close();
                 con.close();
                 return true;
@@ -208,7 +210,8 @@ public class userDAO {
             Connection con = db.getConnection();
             if (con != null) {
                 String sql = "SELECT * FROM News n "
-                        + "WHERE User_id =" + admin;
+                        + " WHERE User_id =" + admin
+                        + " ORDER BY News_id desc ;";
                 Statement call = con.createStatement();
                 ResultSet rs = call.executeQuery(sql);
                 while (rs.next()) {             //needed even if just 1 row       
@@ -223,6 +226,7 @@ public class userDAO {
         }
         return list;
     }
+
     public static void main(String[] args) {
         userDAO dao = new userDAO();
         ArrayList<News> list = dao.GetAllAdminNews(3);

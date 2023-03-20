@@ -80,7 +80,7 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
+                                <!-- c?i n?y th?ng n?o l?m jsp th? ph?n lo?i theo ki?u ng??i d?ng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -102,7 +102,17 @@
             <div class="row nopadding">
                 <div class="col-md-6 user-info-main">
                     <div class="user-info-main-image">
-                        <img class="rounded-circle" src="image/user/alan wong.webp" alt="">
+                        <c:choose>
+                            <c:when test="${user.getGender() eq 'Male' }">
+                                <img class="rounded-circle" src="image/user/male.webp" alt="">
+                            </c:when>
+                            <c:when test="${user.getGender() eq 'Female'}">
+                                <img class="rounded-circle" src="image/user/female.webp" alt="">
+                            </c:when>
+                            <c:otherwise>
+                                <img class="rounded-circle" src="image/user/female.webp" alt="">
+                            </c:otherwise>     
+                        </c:choose>
                     </div>
                     <div class="user-info-main-text">
                         <h1><c:out value="${requestScope.user.getUname()}"/></h1>
@@ -143,59 +153,63 @@
                         <c:if test="${end > requestScope.posted_news.size()-1}">
                             <c:set var="end" value="${requestScope.posted_news.size()-1}"/>
                         </c:if>
-                        <c:forEach begin="${index-2}" end="${end}" var="posted" items="${requestScope.posted_news}" >
-                            <div class="card col-md-4 nopadding">
-                                <img src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-subtitle"><c:out value="${ cat_name.get(posted.getCat_id()).getName()}" />
-                                        <h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3>
-                                        <p class="card-text"><c:out value="${posted.getSubtitle()}"/></p>
+                        <div class="row card-group nopadding">
+                            <c:forEach begin="${index-2}" end="${end}" var="posted" items="${requestScope.posted_news}" >
+                                <div class="card">
+                                    <a href="GetNews?news_id=${posted.news_id}">
+                                        <img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="...">
+                                    </a>
+                                    <div class="card-body">
+                                        <a href="Search?cat_id=${posted.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(posted.getCat_id()).getName()}" /></a>
+                                        <a href="GetNews?news_id=${posted.news_id}"><h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3></a>
+                                        <a href="GetNews?news_id=${posted.news_id}"><p class="card-text"><c:out value="${posted.getSubtitle()}"/></p></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
+                        </div>
                     </c:if>
-                    </div>
                 </div>
-                <!-- PAGING NAVIGATOR -->
-                <div class="paging-nav">
-                    <div class="paging-prev">
-                        <c:if test="${page_posted == 1}">
-                            <h4>Newer</h4>
-                        </c:if>
-                        <c:if test="${page_posted >= 2}">
-                            <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted-1}">Newer</a></h4>
-                        </c:if>
-                    </div>
-                    <div class="paging-progress">
-                        <h4>${page_posted}</h4>
-                    </div>
-                    <div class="paging-next">
-                        <c:if test="${end < requestScope.posted_news.size()-1}">
-                            <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted+1}">Older</a></h4>
-                        </c:if>
-                        <c:if test="${end >= requestScope.posted_news.size()-1}">
-                            <h4>Older</h4>
-                        </c:if>
-                    </div>
-                </div>
-            </c:if>
-            <!-- FOOTER -->
-            <div class="footer">
-                <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
-                <ul>
-                    <li>Tr?n Th? Hùng</li>
-                    <li>Lý Th? L??ng</li>
-                    <li>Phùng Phúc Lâm</li>
-                    <li>Nguy?n Hoàng Hi?p</li>
-                    <li>Nguy?n Chí Trung</li>
-                </ul>
-                <p>@ 2023 PRj301 HE1725</p>
             </div>
+            <!-- PAGING NAVIGATOR -->
+            <div class="paging-nav">
+                <div class="paging-prev">
+                    <c:if test="${page_posted == 1}">
+                        <h4>Newer</h4>
+                    </c:if>
+                    <c:if test="${page_posted >= 2}">
+                        <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted-1}">Newer</a></h4>
+                    </c:if>
+                </div>
+                <div class="paging-progress">
+                    <h4>${page_posted}</h4>
+                </div>
+                <div class="paging-next">
+                    <c:if test="${end < requestScope.posted_news.size()-1}">
+                        <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted+1}">Older</a></h4>
+                    </c:if>
+                    <c:if test="${end >= requestScope.posted_news.size()-1}">
+                        <h4>Older</h4>
+                    </c:if>
+                </div>
+            </div>
+        </c:if>
+        <!-- FOOTER -->
+        <div class="footer">
+            <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
+            <ul>
+                <li>Tr?n Th? Hùng</li>
+                <li>Lý Th? L??ng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguy?n Hoàng Hi?p</li>
+                <li>Nguy?n Chí Trung</li>
+            </ul>
+            <p>@ 2023 PRj301 HE1725</p>
+        </div>
 
-            <!-- Bootstrap script -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
-        </body>
+        <!-- Bootstrap script -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    </body>
 
-    </html>
+</html>

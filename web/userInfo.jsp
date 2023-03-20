@@ -81,7 +81,7 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
+                                <!-- c?i n?y th?ng n?o l?m jsp th? ph?n lo?i theo ki?u ng??i d?ng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -162,7 +162,7 @@
                     </c:if>
                     <c:forEach begin="${index-2}" end="${end}" var="saved_news" items="${requestScope.saved_news}">
                         <div class="card col-md-4 nopadding">
-                            <a href="GetNews?news_id=${saved_news.getNews_id()}" ><img src="<c:out value="${sessionScope.location}"/><c:out value="${saved_news.getImage()}"/>" class="card-img-top" alt="..."></a>
+                            <a href="GetNews?news_id=${saved_news.getNews_id()}" ><img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${saved_news.getImage()}"/>" class="card-img-top" alt="..."></a>
                             <div class="card-body">
                                 <h3 class="card-title"><c:out value="${saved_news.getTitle()}"/></h3>
                                 <p class="card-text"><c:out value="${saved_news.getSubtitle()}"/></p>
@@ -228,11 +228,11 @@
                         </c:if>
                         <c:forEach begin="${index-2}" end="${end}" var="posted" items="${requestScope.posted_news}" >
                             <div class="card col-md-4 nopadding">
-                                <a href="GetNews?news_id=${posted.getNews_id()}" ><img src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="..."></a>
+                                <a href="GetNews?news_id=${posted.getNews_id()}" ><img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="..."></a>
                                 <div class="card-body">
-                                    <h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3>
-                                    <p class="card-text"><c:out value="${posted.getSubtitle()}"/></p>
-                                    <h6 class="card-text"><c:out value="${user_list[posted.getUser_id()].getUname()}"/></h6>
+                                    <a href="Search?cat_id=${posted.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(posted.getCat_id()).getName()}" /></a>
+                                    <a href="GetNews?news_id=${posted.news_id}"><h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3></a>
+                                    <a href="GetNews?news_id=${posted.news_id}"><p class="card-text"><c:out value="${posted.getSubtitle()}"/></p></a>
                                 </div>
                             </div>
                         </c:forEach>
@@ -275,11 +275,10 @@
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
         </div>
-    </body>
 
-    <!-- Bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
+        <!-- Bootstrap script -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 
 </html>

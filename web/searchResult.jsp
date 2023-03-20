@@ -79,7 +79,7 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
+                                <!-- c?i n?y th?ng n?o l?m jsp th? ph?n lo?i theo ki?u ng??i d?ng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -130,25 +130,25 @@
                 <div class="card col-md-4 nopadding">
                     <a href="GetNews?news_id=<%= news.getNews_id()%>" ><img style="height: 300px; object-fit: cover" src="<%= session.getAttribute("location")%><%= news.getImage()%>" class="card-img-top" alt="..."></a>
                     <div class="card-body">
-                        <h3 class="card-title"><%= news.getTitle()%></h3>
-                        <p class="card-text"><%= news.getSubtitle()%></p>
-                        <h6 class="card-text"><%= user_nameList.get(news.getUser_id()).getName()%></h6>
+                        <a href="Search?cat_id=<%=news.getCat_id() %>"><h5 class="card-subtitle"><%= cat_name.get(news.getCat_id()).getName() %></a>
+                        <a href="GetNews?news_id=<%= news.getNews_id()%>"><h3 class="card-title"><%= news.getTitle()%></h3></a>
+                        <a href="GetNews?news_id=<%= news.getNews_id()%>"><p class="card-text"><%= news.getSubtitle()%></p></a>
+                        <a class="author-info" href="publicUserInfo?user_id=<%= news.getUser_id()%>"><h6 class="card-text"><%= user_nameList.get(news.getUser_id()).getName()%></h6></a>
                     </div>
                 </div>
                 <%}%>
             </div>
         </div>
 
-
         <!-- FOOTER -->
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tr?n Th? H?ng</li>
-                <li>L? Th? L??ng</li>
-                <li>Ph?ng Ph?c L?m</li>
-                <li>Nguy?n Ho?ng Hi?p</li>
-                <li>Nguy?n Ch? Trung</li>
+                <li>Tr?n Th? Hùng</li>
+                <li>Lý Th? L??ng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguy?n Hoàng Hi?p</li>
+                <li>Nguy?n Chí Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
         </div>
