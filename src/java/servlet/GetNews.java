@@ -40,7 +40,6 @@ public class GetNews extends HttpServlet {
             catDAO catDAO = new catDAO();
             userDAO userDAO = new userDAO();
             CommentDAO commentDAO = new CommentDAO();
-            String location = "images/";
             int news_id = Integer.parseInt(request.getParameter("news_id"));
 
             news = newsDAO.getNews(news_id);
@@ -70,7 +69,6 @@ public class GetNews extends HttpServlet {
             request.setAttribute("sameCategoryNews", sameCategoryNews);
             request.setAttribute("commentList", commentList);
             request.setAttribute("user_list", userList);
-            request.setAttribute("location", location);
 
             getListComments(request, response, news_id);
         } catch (Exception e) {

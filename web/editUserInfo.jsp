@@ -26,7 +26,7 @@
                 <div class="row nopadding">
                     <div class="col-md-6 user-info-main">
                         <div class="user-info-main-image">
-                            <img class="rounded-circle" src="image/user/alan wong.webp" alt="">
+                            <img class="rounded-circle" src="image/user/male.webp" alt="">
                         </div>
                         <div class="user-info-main-text">
                             <c:set var="user" value="${sessionScope.user}"/>

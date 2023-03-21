@@ -165,9 +165,10 @@
                         <div class="card col-md-4 nopadding">
                             <a href="GetNews?news_id=${saved_news.getNews_id()}" ><img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${saved_news.getImage()}"/>" class="card-img-top" alt="..."></a>
                             <div class="card-body">
-                                <h3 class="card-title"><c:out value="${saved_news.getTitle()}"/></h3>
-                                <p class="card-text"><c:out value="${saved_news.getSubtitle()}"/></p>
-                                <h6 class="card-text"><c:out value="${user_list[saved_news.getUser_id()].getUname()}"/></h6>
+                                <a href="Search?cat_id=${saved_news.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(saved_news.getCat_id()).getName()}" /></h5></a>
+                                <a href="GetNews?news_id=${saved_news.news_id}"><h3 class="card-title"><c:out value="${saved_news.getTitle()}"/></h3></a>
+                                <a href="GetNews?news_id=${saved_news.news_id}"><p class="card-text"><c:out value="${saved_news.getSubtitle()}"/></p></a>
+                                <a href="GetNews?news_id=${saved_news.news_id}"><h6 class="card-text"><c:out value="${user_list[saved_news.getUser_id()].getUname()}"/></h6></a>
                                 <div class="deletesave">
                                     <form onsubmit="return confirm('Are you sure you want to unsave?')" action="UnsaveNews" method="post">
                                         <input type="hidden" name="news_id" value="${saved_news.getNews_id()}">
@@ -231,7 +232,7 @@
                             <div class="card col-md-4 nopadding">
                                 <a href="GetNews?news_id=${posted.getNews_id()}" ><img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="..."></a>
                                 <div class="card-body">
-                                    <a href="Search?cat_id=${posted.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(posted.getCat_id()).getName()}" /></a>
+                                    <a href="Search?cat_id=${posted.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(posted.getCat_id()).getName()}" /></h5></a>
                                     <a href="GetNews?news_id=${posted.news_id}"><h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3></a>
                                     <a href="GetNews?news_id=${posted.news_id}"><p class="card-text"><c:out value="${posted.getSubtitle()}"/></p></a>
                                 </div>

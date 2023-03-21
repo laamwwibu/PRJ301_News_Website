@@ -121,7 +121,6 @@
             </form>
         </div>
         <!-- MAIN-CONTENT -->
-        <!-- them if neu ko co bai nao -->
         <div class="container-fluid search-result">
             <!-- 4 rows of news -->
             <div class="row nopadding">
@@ -131,10 +130,10 @@
                 <div class="card col-md-4 nopadding">
                     <a href="GetNews?news_id=<%= news.getNews_id()%>" ><img style="height: 300px; object-fit: cover" src="<%= session.getAttribute("location")%><%= news.getImage()%>" class="card-img-top" alt="..."></a>
                     <div class="card-body">
-                        <a href="Search?cat_id=<%=news.getCat_id() %>"><h5 class="card-subtitle"><%= cat_name.get(news.getCat_id()).getName() %></a>
-                        <a href="GetNews?news_id=<%= news.getNews_id()%>"><h3 class="card-title"><%= news.getTitle()%></h3></a>
-                        <a href="GetNews?news_id=<%= news.getNews_id()%>"><p class="card-text"><%= news.getSubtitle()%></p></a>
-                        <a class="author-info" href="publicUserInfo?user_id=<%= news.getUser_id()%>"><h6 class="card-text"><%= user_nameList.get(news.getUser_id()).getName()%></h6></a>
+                        <h5 class="card-subtitle"><%= cat_name.get(news.getCat_id()).getName() %>
+                        <h3 class="card-title"><%= news.getTitle()%></h3>
+                        <p class="card-text"><%= news.getSubtitle()%></p>
+                        <h6 class="card-text"><%= user_nameList.get(news.getUser_id()).getName()%></h6>
                     </div>
                 </div>
                 <%}%>

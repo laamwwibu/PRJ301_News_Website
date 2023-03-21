@@ -154,19 +154,17 @@
                         <c:if test="${end > requestScope.posted_news.size()-1}">
                             <c:set var="end" value="${requestScope.posted_news.size()-1}"/>
                         </c:if>
-                        <div class="row card-group nopadding">
+                        <div class="row nopadding">
                             <c:forEach begin="${index-2}" end="${end}" var="posted" items="${requestScope.posted_news}" >
-                                <div class="card">
-                                    <a href="GetNews?news_id=${posted.news_id}">
-                                        <img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="...">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="Search?cat_id=${posted.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(posted.getCat_id()).getName()}" /></a>
-                                        <a href="GetNews?news_id=${posted.news_id}"><h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3></a>
-                                        <a href="GetNews?news_id=${posted.news_id}"><p class="card-text"><c:out value="${posted.getSubtitle()}"/></p></a>
-                                    </div>
+                            <div class="card col-md-4 nopadding">
+                                <a href="GetNews?news_id=${posted.getNews_id()}" ><img style="height: 300px; object-fit: cover" src="<c:out value="${sessionScope.location}"/><c:out value="${posted.getImage()}"/>" class="card-img-top" alt="..."></a>
+                                <div class="card-body">
+                                    <a href="Search?cat_id=${posted.cat_id}"><h5 class="card-subtitle"><c:out value="${ cat_list.get(posted.getCat_id()).getName()}" /></h5></a>
+                                    <a href="GetNews?news_id=${posted.news_id}"><h3 class="card-title"><c:out value="${posted.getTitle()}"/></h3></a>
+                                    <a href="GetNews?news_id=${posted.news_id}"><p class="card-text"><c:out value="${posted.getSubtitle()}"/></p></a>
                                 </div>
-                            </c:forEach>
+                            </div>
+                        </c:forEach>
                         </div>
                     </c:if>
                 </div>

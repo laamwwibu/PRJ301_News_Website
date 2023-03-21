@@ -45,16 +45,16 @@
                 <div class="registration form">
                     <header>Signup</header>
                     <form action="UserSignup" method="post">
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="text" name="name" placeholder="Real name">
-                        <input type="date" name="dob" placeholder="dd/mm/yyy">
+                        <input type="text" name="username" placeholder="Username"required="">
+                        <input type="text" name="name" placeholder="Real name" required="">
+                        <input type="date" name="dob" placeholder="dd/mm/yyy" required="">
                         <div class="signup-gender">
                             <label for="gender">Gender</label>
-                            Male<input type="radio" name="gender" value="Male" id="gender-male" checked>
-                            Female<input type="radio" name="gender" value="Female" id="gender-female">
+                            Male<input type="radio" name="gender" value="Male" id="gender-male" checked required="">
+                            Female<input type="radio" name="gender" value="Female" id="gender-female" required="">
                         </div>
-                        <input type="password" name="pass" placeholder="Password">
-                        <input type="submit" class="button" value="Sign up">
+                        <input type="password" name="pass" placeholder="Password" required="">
+                        <input type="submit" class="button" value="Sign up" required="">
                     </form>
                     <div class="signup">
                         <span class="signup">Already have an account?
