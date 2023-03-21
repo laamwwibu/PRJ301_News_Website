@@ -2,6 +2,7 @@
 <%@page import="model.Category"%>
 <%@page import="java.util.*"  %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +70,7 @@
                          int ID = 0;
                          if (session.getAttribute("user") != null) {  
                         User user1 = (User)session.getAttribute("user");
-                        user = user1.getUname();
+                        user = user1.getName();
                         ID = user1.getId();
                         }%>
                     <p class="nopadding">Hello, <%= user %></p>
@@ -103,10 +104,10 @@
                 <div class="col-md-6 user-info-main">
                     <div class="user-info-main-image">
                         <c:choose>
-                            <c:when test="${user.getGender() eq 'Male' }">
+                            <c:when test="${requestScope.puser.getGender() eq 'Male' }">
                                 <img class="rounded-circle" src="image/user/male.webp" alt="">
                             </c:when>
-                            <c:when test="${user.getGender() eq 'Female'}">
+                            <c:when test="${requestScope.puser.getGender() eq 'Female'}">
                                 <img class="rounded-circle" src="image/user/female.webp" alt="">
                             </c:when>
                             <c:otherwise>
@@ -115,16 +116,16 @@
                         </c:choose>
                     </div>
                     <div class="user-info-main-text">
-                        <h1><c:out value="${requestScope.user.getUname()}"/></h1>
-                        <h4>${requestScope.user.getUname()}@vice.com</h4>
+                        <h1><c:out value="${requestScope.puser.getUname()}"/></h1>
+                        <h4>${requestScope.puser.getUname()}@vice.com</h4>
                     </div>
                 </div>
                 <div class="col-md-6 container-fluid user-info-detail">
                     <div class="user-info-detail-body">
-                        <% User user1 = (User) request.getAttribute("user"); %>
-                        <p><span>Username: </span><%= user1.getUname() %></p>
-                        <p><span>Gender: </span> <%= user1.getGender()%></p>
-                        <p><span>Date Of Birth: </span> <%= user1.getDob()%></p>
+                        <c:set var="puser" value="${requestScope.puser}"/>
+                        <p><span>Username: </span>${puser.getUname()}</p>
+                        <p><span>Gender: </span> ${puser.getGender()}</p>
+                        <p><span>Date Of Birth: </span> ${puser.getDob()}</p>
                     </div>
                 </div>
             </div>
@@ -132,13 +133,13 @@
 
 
 
-        <c:if test="${requestScope.user.isIsAdmin()}">
+        <c:if test="${requestScope.puser.isIsAdmin()}">
             <!-- <AUTHOR NAME>'s NEWS -->
             <div class="container-fluid">
                 <div class="row nopadding">
                     <!-- <AUTHOR NAME>'s NEWS TITLE -->
                     <div class="latest-title user-info-titles nopadding">
-                        <h1>${requestScope.user.getUname()}'s</h1>
+                        <h1>${requestScope.puser.getUname()}'s</h1>
                         <h1>NEWS</h1>
                     </div>
                     <c:set var ="page_posted" value="1"/>
@@ -177,7 +178,7 @@
                         <h4>Newer</h4>
                     </c:if>
                     <c:if test="${page_posted >= 2}">
-                        <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted-1}">Newer</a></h4>
+                        <h4><a href="publicUserInfo?user_id=${puser.getId()}&page_posted=${page_posted-1}">Newer</a></h4>
                     </c:if>
                 </div>
                 <div class="paging-progress">
@@ -185,7 +186,7 @@
                 </div>
                 <div class="paging-next">
                     <c:if test="${end < requestScope.posted_news.size()-1}">
-                        <h4><a href="publicUserInfo?user_id=<%= user1.getId() %>&page_posted=${page_posted+1}">Older</a></h4>
+                        <h4><a href="publicUserInfo?user_id=${puser.getId()}&page_posted=${page_posted+1}">Older</a></h4>
                     </c:if>
                     <c:if test="${end >= requestScope.posted_news.size()-1}">
                         <h4>Older</h4>
@@ -193,18 +194,18 @@
                 </div>
             </div>
         </c:if>
-        <!-- FOOTER -->
+        <!-- footer -->
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tr?n Th? H�ng</li>
-                <li>L� Th? L??ng</li>
-                <li>Ph�ng Ph�c L�m</li>
-                <li>Nguy?n Ho�ng Hi?p</li>
-                <li>Nguy?n Ch� Trung</li>
+                <li>Trần Thế Hùng</li>
+                <li>Lý Thế Lượng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguyễn Hoàng Hiệp</li>
+                <li>Nguyễn Chí Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
-        </div>
+        </div> 
 
         <!-- Bootstrap script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

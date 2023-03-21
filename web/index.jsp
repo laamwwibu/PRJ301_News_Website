@@ -1,7 +1,9 @@
 <%@page import="model.*"%>
 <%@page import="java.util.*"  %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
     <head>
         <meta charset="UTF-8">
@@ -62,7 +64,7 @@
                          int ID = 0;
                          if (session.getAttribute("user") != null) {  
                         User user1 = (User)session.getAttribute("user");
-                        user = user1.getUname();
+                        user = user1.getName();
                         ID = user1.getId();
                         }%>
                     <p class="nopadding">Hello, <%= user %></p>
@@ -73,7 +75,7 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
+                                <!-- cÃ¡i nÃ y th?ng nÃ o lÃ m jsp thÃ¬ phÃ¢n lo?i theo ki?u ng??i dÃ¹ng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -169,11 +171,11 @@
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tran The Hùng</li>
-                <li>Lý The Luong</li>
-                <li>Phùng Phúc Lâm</li>
-                <li>Nguyen Hoàng Hiep</li>
-                <li>Nguyen Chí Trung</li>
+                <li>Tráº§n Tháº¿ HÃ¹ng</li>
+                <li>LÃ½ Tháº¿ LÆ°á»£ng</li>
+                <li>PhÃ¹ng PhÃºc LÃ¢m</li>
+                <li>Nguyá»…n HoÃ ng Hiá»‡p</li>
+                <li>Nguyá»…n ChÃ­ Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
         </div>    

@@ -87,19 +87,18 @@ public class UserUpdate extends HttpServlet {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date dob = df.parse(strDate);
             User user = (User)request.getSession().getAttribute("user");
-            if(!username.equals(user.getUname())){
+            if(!username.equals(user.getUname())){ // check username update giong
             if(userdao.CheckDuplicate(username)) throw new NumberFormatException();
             }
-            User up_user = new User(id, pass, realname, username, gender, false, dob);
-            if(userdao.updateUser(up_user))
-            request.getSession().setAttribute("user", up_user);
+            User up_user = new User(id, pass, realname, username, gender, false,dob);
+            if(userdao.updateUser(up_user)){
+            User new_user = userdao.Login(username, pass);
+                        System.out.println("Upuser: "+ new_user.getGender()+" "+new_user.getDob()+" "+new_user.getName()+" "+new_user.getUname());
+            request.getSession().setAttribute("user", new_user);
+            }
             response.sendRedirect("MainPage");
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             request.setAttribute("error", mess);
-            request.setAttribute("return_page", "editUserInfo.jsp");
-            request.getRequestDispatcher("ErrorPage.jsp").forward(request, response);
-        } catch (ParseException ex) {
-            request.setAttribute("error", "Cannot update user due to time!");
             request.setAttribute("return_page", "editUserInfo.jsp");
             request.getRequestDispatcher("ErrorPage.jsp").forward(request, response);
         }

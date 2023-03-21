@@ -1,6 +1,6 @@
 <%@page import="java.util.*"%>
 <%@page import="model.*"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -224,18 +224,18 @@
                 </div>
             </c:forEach>
         </div>
-        <!-- FOOTER -->
+        <!-- footer -->
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tr?n Th? H�ng</li>
-                <li>L� Th? L??ng</li>
-                <li>Ph�ng Ph�c L�m</li>
-                <li>Nguy?n Ho�ng Hi?p</li>
-                <li>Nguy?n Ch� Trung</li>
+                <li>Trần Thế Hùng</li>
+                <li>Lý Thế Lượng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguyễn Hoàng Hiệp</li>
+                <li>Nguyễn Chí Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
-        </div>
+        </div>  
         <script>
             function checkSession() {
                 // Retrieve data from the server-side using JSP expressions

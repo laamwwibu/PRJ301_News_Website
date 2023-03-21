@@ -2,6 +2,7 @@
 <%@page import="model.Category"%>
 <%@page import="java.util.*"  %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,7 +115,7 @@
                         </c:if>     
                     </div>
                     <div class="user-info-main-text">
-                        <h1><c:out value="${sessionScope.user.getUname()}"/></h1>
+                        <h1><c:out value="${sessionScope.user.getName()}"/></h1>
                         <h4>${sessionScope.user.getUname()}@vice.com</h4>
                     </div>
                 </div>
@@ -263,18 +264,18 @@
                 </c:if>
             </div>
         </div>
-        <!-- FOOTER -->
+        <!-- footer -->
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tr?n Th? H�ng</li>
-                <li>L� Th? L??ng</li>
-                <li>Ph�ng Ph�c L�m</li>
-                <li>Nguy?n Ho�ng Hi?p</li>
-                <li>Nguy?n Ch� Trung</li>
+                <li>Trần Thế Hùng</li>
+                <li>Lý Thế Lượng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguyễn Hoàng Hiệp</li>
+                <li>Nguyễn Chí Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
-        </div>
+        </div>  
 
         <!-- Bootstrap script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

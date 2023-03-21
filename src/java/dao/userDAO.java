@@ -9,12 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.User;
 import model.News;
 
@@ -187,7 +184,7 @@ public class userDAO {
                 call.setNString(3, user.getName());
                 call.setString(4, user.getUname());
                 call.setNString(5, user.getGender());
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String strDate = df.format(user.getDob());
                 call.setString(6, strDate);
                 if (call.executeUpdate() <= 0) {

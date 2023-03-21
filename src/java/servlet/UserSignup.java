@@ -17,8 +17,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -86,7 +84,7 @@ public class UserSignup extends HttpServlet {
             }
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date dob;
-            dob = df.parse("2003-12-10");
+            dob =  df.parse("2003-12-10");
 //            User add = new User(0, "nghia123", "nghia", "nghia123", "Male", false, dob);
             User add = new User(0, request.getParameter("pass"), request.getParameter("name"), request.getParameter("username"), request.getParameter("gender"), false, dob);
             if(!dao.InsertUser(add)){

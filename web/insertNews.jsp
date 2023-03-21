@@ -2,6 +2,7 @@
 <%@page import="java.util.*"%>
 <%@page import="model.*"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +93,7 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- c�i n�y th?ng n�o l�m jsp th� ph�n lo?i theo ki?u ng??i d�ng -->
+                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -154,18 +155,18 @@
                 integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 
-        <!-- FOOTER -->
+        <!-- footer -->
         <div class="footer">
             <img class="rotate" style="width: 100px;" src="image/branding/VMG-logo-updated.png" alt="">
             <ul>
-                <li>Tr?n Th? H?ng</li>
-                <li>L? Th? L??ng</li>
-                <li>Ph?ng Ph?c L?m</li>
-                <li>Nguy?n Ho?ng Hi?p</li>
-                <li>Nguy?n Ch? Trung</li>
+                <li>Trần Thế Hùng</li>
+                <li>Lý Thế Lượng</li>
+                <li>Phùng Phúc Lâm</li>
+                <li>Nguyễn Hoàng Hiệp</li>
+                <li>Nguyễn Chí Trung</li>
             </ul>
             <p>@ 2023 PRj301 HE1725</p>
-        </div>
+        </div>  
     </body>
 
 </html>
