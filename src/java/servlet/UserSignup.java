@@ -79,19 +79,20 @@ public class UserSignup extends HttpServlet {
             throws ServletException, IOException {
         userDAO dao = new userDAO();
         try {
-            if(dao.CheckDuplicate(request.getParameter("username"))){
+            if (dao.CheckDuplicate(request.getParameter("username"))) {
                 throw new NumberFormatException();
             }
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date dob;
-            dob =  df.parse("2003-12-10");
+            dob = df.parse("2003-12-10");
 //            User add = new User(0, "nghia123", "nghia", "nghia123", "Male", false, dob);
             User add = new User(0, request.getParameter("pass"), request.getParameter("name"), request.getParameter("username"), request.getParameter("gender"), false, dob);
-            if(!dao.InsertUser(add)){
+            if (!dao.InsertUser(add)) {
                 throw new NullPointerException();
             }
-            request.getSession().setAttribute("user", add);
-           response.sendRedirect("MainPage");
+            User new_user = dao.Login(request.getParameter("username"), request.getParameter("pass"));
+            request.getSession().setAttribute("user", new_user);
+            response.sendRedirect("MainPage");
         } catch (NumberFormatException e) {
             request.setAttribute("error", "Existed username !");
             request.setAttribute("return_page", "login.jsp");
@@ -100,7 +101,7 @@ public class UserSignup extends HttpServlet {
             request.setAttribute("error", "cant add user !");
             request.setAttribute("return_page", "login.jsp");
             request.getRequestDispatcher("ErrorPage.jsp").forward(request, response);
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             request.setAttribute("error", "cant add user due to failed procedure !");
             request.setAttribute("return_page", "login.jsp");
             request.getRequestDispatcher("ErrorPage.jsp").forward(request, response);

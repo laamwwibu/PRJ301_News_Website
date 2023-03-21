@@ -51,7 +51,7 @@
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
                     <form action="Search">
-                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything" required="">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -75,7 +75,6 @@
                                 <i class="material-icons hover-animation-grow">person</i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <!-- cái này th?ng nào làm jsp thì phân lo?i theo ki?u ng??i dùng -->
                                 <% if (session.getAttribute("user") == null) {  %>
                                 <li><a class="dropdown-item" href="login.jsp">Login</a></li>
                                 <li><a class="dropdown-item" href="login.jsp">Sign up</a></li>
@@ -109,7 +108,7 @@
                                 <h5 class="card-subtitle"><%= cat_name.get(news_list.get(0).getCat_id()).getName() %></h5><!-- first news -->
                                 <h3 class="card-title"><%= news_list.get(0).getTitle()%></h3>
                                 <p class="card-text"><%= news_list.get(0).getSubtitle()%></p>
-                                <h6 class="card-text"><%= user_nameList.get(news_list.get(0).getUser_id()).getUname() %></h6>
+                                <h6 class="card-text"><%= user_nameList.get(news_list.get(0).getUser_id()).getName() %></h6>
                             </div>
                         </div>
                     </div>
@@ -125,7 +124,7 @@
                             <a href="Search?cat_id=<%= news_list.get(idx).getCat_id() %>"><h5 class="card-subtitle"><%= cat_name.get(news_list.get(idx).getCat_id()).getName() %></h5></a>
                             <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" > <h3 class="card-title"><%= news_list.get(idx).getTitle()%></h3> </a>
                             <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" ><p class="card-text"><%= news_list.get(idx).getSubtitle()%></p> </a>
-                            <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getUname() %></h6>
+                            <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getName() %></h6>
                         </div>
                     </div>
                     <%}%>
@@ -156,7 +155,7 @@
                                     <a href="Search?cat_id=<%= news_list.get(idx).getCat_id() %>"><h5 class="card-subtitle"><%= cat_name.get(news_list.get(idx).getCat_id()).getName() %></h5></a>
                                     <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" > <h3 class="card-title"><%= news_list.get(idx).getTitle()%></h3> </a>
                                     <a href="GetNews?news_id=<%= news_list.get(idx).getNews_id()%>" ><p class="card-text"><%= news_list.get(idx).getSubtitle()%></p> </a>
-                                    <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getUname() %></h6>
+                                    <h6 class="card-text"><%= user_nameList.get(news_list.get(idx).getUser_id()).getName() %></h6>
                                 </div>
                             </div>
                         </div>

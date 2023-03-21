@@ -1,7 +1,44 @@
 Create DATABASE NewWebsite1;
 
-
 USE NewWebsite1;
+
+CREATE PROC insertUser
+@ID INT OUTPUT,
+@pass VARCHAR(20),
+@name NVARCHAR(50),
+@user VARCHAR(60),
+@isad BIT,
+@gender NVARCHAR(10),
+@dob DATE
+AS 
+BEGIN
+	INSERT INTO dbo.UserS
+	(
+	    User_name,
+	    Username,
+	    id_Admin,
+	    PASSWORD,
+		Gender,
+		dob
+	)
+	SELECT @name,@user,@isad,@pass,@gender, @dob
+	SET @ID = (SELECT TOP 1 User_id FROM dbo.UserS ORDER BY User_id DESC)
+END 
+
+
+CREATE PROCEDURE InsertUser
+    @Name varchar(50),
+    @Email varchar(50),
+    @Password varchar(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    INSERT INTO Users (Name, Email, Password)
+    VALUES (@Name, @Email, @Password)
+    
+    SELECT SCOPE_IDENTITY() AS UserID
+END
 
 
 
@@ -282,3 +319,4 @@ SELECT
   END AS Current_Identity;
 
   select * from News* /
+

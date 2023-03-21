@@ -30,7 +30,7 @@
                         </div>
                         <div class="user-info-main-text">
                             <c:set var="user" value="${sessionScope.user}"/>
-                            <h1 id="h1-content"><c:out value="${user.getUname()}"/></h1>
+                            <h1 id="h1-content"><c:out value="${user.getName()}"/></h1>
                             <h4><c:out value="${user.getUname()}"/>@vice.com</h4>
                         </div>
                     </div>

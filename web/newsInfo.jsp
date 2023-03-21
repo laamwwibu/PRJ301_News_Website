@@ -53,7 +53,7 @@
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
                     <form action="Search">
-                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything" required="">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -129,7 +129,7 @@
                                         <img class="author-image rounded-circle" src="image/user/female.webp" alt="">
                                     </c:otherwise>     
                                 </c:choose>
-                                <p class="author-name nopadding">By <span><%= user_nameList.get(news.getUser_id()).getUname() %></span></p>
+                                <p class="author-name nopadding">By <span><%= user_nameList.get(news.getUser_id()).getName() %></span></p>
                             </a>
                         </div>
 

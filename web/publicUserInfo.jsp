@@ -57,7 +57,7 @@
                 <!-- NAVBAR SEARCH -->
                 <div class="col-md-3 navbar-search">
                     <form action="Search">
-                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything">
+                        <input style="width: 100%;height: 44px; border-radius: 100px; padding: 0px 20px" type="text" name="title" placeholder="Search anything" required="">
                         <button style="border: 0px;" type="submit" class="rounded-circle nopadding">
                             <i class="material-icons hover-animation-grow">search</i>
                         </button>
@@ -116,7 +116,7 @@
                         </c:choose>
                     </div>
                     <div class="user-info-main-text">
-                        <h1><c:out value="${requestScope.puser.getUname()}"/></h1>
+                        <h1><c:out value="${requestScope.puser.getName()}"/></h1>
                         <h4>${requestScope.puser.getUname()}@vice.com</h4>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                 <div class="row nopadding">
                     <!-- <AUTHOR NAME>'s NEWS TITLE -->
                     <div class="latest-title user-info-titles nopadding">
-                        <h1>${requestScope.puser.getUname()}'s</h1>
+                        <h1>${requestScope.puser.getName()}'s</h1>
                         <h1>NEWS</h1>
                     </div>
                     <c:set var ="page_posted" value="1"/>
